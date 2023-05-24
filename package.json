@@ -4,7 +4,7 @@
   "description": "The backend api for the mon ordonnace mobile app https://github.com/riad40/mon-ordonnace",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon --legacy-watch dist/index.js\"",
     "build": "npx tsc",
     "start": "node dist/index.js"
 

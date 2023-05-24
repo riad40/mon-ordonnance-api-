@@ -1,1 +1,31 @@
 version: "3.1"
+
+services:
+
+  api: 
+    build: ./
+    container_name: api_container
+    ports:
+      - 5000:5000
+    networks:
+      - mon-ordonnance-net
+    depends_on:
+      - mongodb
+  
+  mongodb:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - 27018:27017
+    networks:
+      - mon-ordonnance-net
+    volumes:
+      - mongodb-data:/data/db
+      
+networks:
+  mon-ordonnance-net:
+    driver: bridge
+
+volumes:
+  mongodb-data:
+    driver: local
