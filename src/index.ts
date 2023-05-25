@@ -1,9 +1,10 @@
 import express, { Express } from "express"
 import dotenv from "dotenv"
+// configs
 import connectDB from "./configs/db"
 import initDb from "./configs/initDb"
 // routes
-import { userRouter, clinicRouter } from "./routes"
+import { userRouter, clinicRouter, patientRouter } from "./routes"
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }))
 // routes
 app.use("/api/users", userRouter)
 app.use("/api/clinics", clinicRouter)
+app.use("/api/patients", patientRouter)
 
 const port = process.env.PORT || 3000
 

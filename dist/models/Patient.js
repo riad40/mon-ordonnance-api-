@@ -27,11 +27,7 @@ class PatientSchema extends mongoose_1.default.Schema {
                 type: String,
                 required: true,
             },
-            createdAt: {
-                type: String,
-                default: Date.now(),
-            },
-        });
+        }, { timestamps: true });
     }
 }
 exports.default = mongoose_1.default.model("Patient", new PatientSchema());

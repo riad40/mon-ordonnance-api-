@@ -1,5 +1,5 @@
 import { User, UserMethods } from "./models/userTypes"
 import { Clinic, ClinicMethods } from "./models/clinicTypes"
-import { Patient } from "./models/patinetTypes"
+import { Patient, PatientMethods } from "./models/patinetTypes"
 
-export { User, Clinic, UserMethods, ClinicMethods, Patient }
+export { User, Clinic, UserMethods, ClinicMethods, Patient, PatientMethods }

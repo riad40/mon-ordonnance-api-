@@ -1,3 +1,5 @@
+import { Request, Response } from "express"
+
 /** ======================= PATIENT TYPES ======================= */
 
 interface Patient {
@@ -6,7 +8,15 @@ interface Patient {
     cin: string
     phoneNumber: string
     dateOfBirth: string
-    createdAt: string
 }
 
-export type { Patient }
+// patient methods
+interface PatientMethods {
+    index: (req: Request, res: Response) => Promise<Response> // read all
+    show: (req: Request, res: Response) => Promise<Response> // read one
+    store: (req: Request, res: Response) => Promise<Response> // create
+    update: (req: Request, res: Response) => Promise<Response> // update
+    destroy: (req: Request, res: Response) => Promise<Response> // delete
+}
+
+export type { Patient, PatientMethods }

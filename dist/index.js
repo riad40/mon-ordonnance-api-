@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+// configs
 const db_1 = __importDefault(require("./configs/db"));
 const initDb_1 = __importDefault(require("./configs/initDb"));
 // routes
@@ -18,6 +19,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 // routes
 app.use("/api/users", routes_1.userRouter);
 app.use("/api/clinics", routes_1.clinicRouter);
+app.use("/api/patients", routes_1.patientRouter);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
