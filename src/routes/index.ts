@@ -1,1 +1,3 @@
-console.log("routes/index.ts")
+import userRouter from "./user/userRoutes"
+
+export { userRouter }
