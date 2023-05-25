@@ -1,4 +1,5 @@
 import { ObjectId } from "mongoose"
+import { Request, Response } from "express"
 
 /** ============================ Clinic Type ============================ */
 interface Clinic {
@@ -11,4 +12,10 @@ interface Clinic {
     owner: ObjectId | string
 }
 
-export type { Clinic }
+// clinic methods
+interface ClinicMethods {
+    showOne(req: Request, res: Response): Promise<Response>
+    update(req: Request, res: Response): Promise<Response>
+}
+
+export type { Clinic, ClinicMethods }

@@ -1,4 +1,4 @@
-import { User } from "./models/userTypes"
-import { Clinic } from "./models/clinicTypes"
+import { User, UserMethods } from "./models/userTypes"
+import { Clinic, ClinicMethods } from "./models/clinicTypes"
 
-export { User, Clinic }
+export { User, Clinic, UserMethods, ClinicMethods }
