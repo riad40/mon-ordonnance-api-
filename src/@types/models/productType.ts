@@ -12,7 +12,7 @@ interface Product {
     dosage: {
         ageGroup: string
         instructions: string
-    }
+    }[]
 }
 
 interface ProductDocument extends Product, Document {}

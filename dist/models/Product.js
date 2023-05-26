@@ -9,10 +9,12 @@ class ProductSchema extends mongoose_1.Schema {
             classTherapeutic: { type: String, required: true },
             laboratory: { type: String, required: true },
             avatar: { type: String },
-            dosage: {
-                ageGroup: { type: String },
-                instructions: { type: String },
-            },
+            dosage: [
+                {
+                    ageGroup: { type: String },
+                    instructions: { type: String },
+                },
+            ],
         }, {
             timestamps: true,
         });

@@ -10,10 +10,12 @@ class ProductSchema extends Schema<ProductDocument> {
                 classTherapeutic: { type: String, required: true },
                 laboratory: { type: String, required: true },
                 avatar: { type: String },
-                dosage: {
-                    ageGroup: { type: String },
-                    instructions: { type: String },
-                },
+                dosage: [
+                    {
+                        ageGroup: { type: String },
+                        instructions: { type: String },
+                    },
+                ],
             },
             {
                 timestamps: true,

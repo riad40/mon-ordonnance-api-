@@ -43,7 +43,7 @@ class ProductsController implements ProductController {
      */
 
     public async createProduct(req: Request, res: Response): Promise<Response> {
-        const { name, dci, classTherapeutic, laboratory } = req.body
+        const { name, dci, classTherapeutic, laboratory, dosage } = req.body
 
         const avatar = req.file && `/images/${req.file.filename}`
 
@@ -54,6 +54,7 @@ class ProductsController implements ProductController {
                 classTherapeutic,
                 laboratory,
                 avatar,
+                dosage,
             })
             return res.status(201).json({
                 message: "Product created successfully",

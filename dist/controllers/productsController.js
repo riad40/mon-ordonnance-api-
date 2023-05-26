@@ -56,7 +56,7 @@ class ProductsController {
      */
     createProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name, dci, classTherapeutic, laboratory } = req.body;
+            const { name, dci, classTherapeutic, laboratory, dosage } = req.body;
             const avatar = req.file && `/images/${req.file.filename}`;
             try {
                 const newProduct = yield Product_1.default.create({
@@ -65,6 +65,7 @@ class ProductsController {
                     classTherapeutic,
                     laboratory,
                     avatar,
+                    dosage,
                 });
                 return res.status(201).json({
                     message: "Product created successfully",
