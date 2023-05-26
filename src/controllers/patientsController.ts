@@ -45,6 +45,8 @@ class PatientsController implements PatientMethods {
     async store(req: Request, res: Response): Promise<Response> {
         const { firstName, lastName, cin, phoneNumber, dateOfBirth } = req.body
 
+        const avatar = req.file && `/images/${req.file?.filename}`
+
         try {
             const patient: PatientType = await Patient.create({
                 firstName,
@@ -52,6 +54,7 @@ class PatientsController implements PatientMethods {
                 cin,
                 phoneNumber,
                 dateOfBirth,
+                avatar,
             })
             return res.status(201).json({
                 message: "Patient created successfully",
@@ -72,6 +75,8 @@ class PatientsController implements PatientMethods {
     async update(req: Request, res: Response): Promise<Response> {
         const { id } = req.params
 
+        const avatar = req.file && `/images/${req.file?.filename}`
+
         try {
             const patient: PatientType | null = await Patient.findById(id)
 
@@ -79,7 +84,14 @@ class PatientsController implements PatientMethods {
                 return res.status(404).json({ message: "Patient not found" })
             }
 
-            const updatedPatient: PatientType | null = await Patient.findByIdAndUpdate(id, req.body, { new: true })
+            const updatedPatient: PatientType | null = await Patient.findByIdAndUpdate(
+                id,
+                {
+                    ...req.body,
+                    avatar: avatar || patient.avatar,
+                },
+                { new: true },
+            )
 
             return res.status(200).json({
                 message: "Patient updated successfully",

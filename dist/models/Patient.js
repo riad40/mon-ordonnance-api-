@@ -27,6 +27,9 @@ class PatientSchema extends mongoose_1.default.Schema {
                 type: String,
                 required: true,
             },
+            avatar: {
+                type: String,
+            },
         }, { timestamps: true });
     }
 }

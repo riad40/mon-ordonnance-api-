@@ -8,6 +8,7 @@ interface Patient {
     cin: string
     phoneNumber: string
     dateOfBirth: string
+    avatar: string
 }
 
 // patient methods

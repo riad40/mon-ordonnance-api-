@@ -1,5 +1,6 @@
 import { Router } from "express"
 import PatientsController from "../../controllers/patientsController"
+import uploadImage from "../../middlewares/uploadImage"
 
 const patientRouter: Router = Router()
 
@@ -9,7 +10,7 @@ patientRouter.get("/", index)
 
 patientRouter.get("/:id", show)
 
-patientRouter.post("/", store)
+patientRouter.post("/", uploadImage.single("avatar"), store)
 
 patientRouter.put("/:id", update)
 

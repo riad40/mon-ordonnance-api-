@@ -54,8 +54,10 @@ class PatientsController {
      * @body    { firstName, lastName, cin, phoneNumber, dateOfBirth }
      */
     store(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const { firstName, lastName, cin, phoneNumber, dateOfBirth } = req.body;
+            const avatar = req.file && `/images/${(_a = req.file) === null || _a === void 0 ? void 0 : _a.filename}`;
             try {
                 const patient = yield Patient_1.default.create({
                     firstName,
@@ -63,6 +65,7 @@ class PatientsController {
                     cin,
                     phoneNumber,
                     dateOfBirth,
+                    avatar,
                 });
                 return res.status(201).json({
                     message: "Patient created successfully",
@@ -81,14 +84,16 @@ class PatientsController {
      * @body    { firstName, lastName, cin, phoneNumber, dateOfBirth }
      */
     update(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            const avatar = req.file && `/images/${(_a = req.file) === null || _a === void 0 ? void 0 : _a.filename}`;
             try {
                 const patient = yield Patient_1.default.findById(id);
                 if (!patient) {
                     return res.status(404).json({ message: "Patient not found" });
                 }
-                const updatedPatient = yield Patient_1.default.findByIdAndUpdate(id, req.body, { new: true });
+                const updatedPatient = yield Patient_1.default.findByIdAndUpdate(id, Object.assign(Object.assign({}, req.body), { avatar: avatar || patient.avatar }), { new: true });
                 return res.status(200).json({
                     message: "Patient updated successfully",
                     patient: updatedPatient,

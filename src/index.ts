@@ -5,6 +5,7 @@ import connectDB from "./configs/db"
 import initDb from "./configs/initDb"
 // routes
 import { userRouter, clinicRouter, patientRouter } from "./routes"
+import path from "path"
 
 dotenv.config()
 
@@ -16,6 +17,8 @@ const app: Express = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(express.static(path.join(__dirname, "public")))
 
 // routes
 app.use("/api/users", userRouter)
