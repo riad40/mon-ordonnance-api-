@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 import connectDB from "./configs/db"
 import initDb from "./configs/initDb"
 // routes
-import { userRouter, clinicRouter, patientRouter } from "./routes"
+import { userRouter, clinicRouter, patientRouter, productRouter } from "./routes"
 import path from "path"
 
 dotenv.config()
@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use("/api/users", userRouter)
 app.use("/api/clinics", clinicRouter)
 app.use("/api/patients", patientRouter)
+app.use("/api/products", productRouter)
 
 const port = process.env.PORT || 3000
 
