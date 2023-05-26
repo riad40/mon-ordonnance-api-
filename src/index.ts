@@ -4,7 +4,7 @@ import dotenv from "dotenv"
 import connectDB from "./configs/db"
 import initDb from "./configs/initDb"
 // routes
-import { userRouter, clinicRouter, patientRouter, productRouter } from "./routes"
+import { userRouter, clinicRouter, patientRouter, productRouter, prescriptionRouter } from "./routes"
 import path from "path"
 
 dotenv.config()
@@ -25,6 +25,7 @@ app.use("/api/users", userRouter)
 app.use("/api/clinics", clinicRouter)
 app.use("/api/patients", patientRouter)
 app.use("/api/products", productRouter)
+app.use("/api/prescriptions", prescriptionRouter)
 
 const port = process.env.PORT || 3000
 

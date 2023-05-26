@@ -23,6 +23,7 @@ app.use("/api/users", routes_1.userRouter);
 app.use("/api/clinics", routes_1.clinicRouter);
 app.use("/api/patients", routes_1.patientRouter);
 app.use("/api/products", routes_1.productRouter);
+app.use("/api/prescriptions", routes_1.prescriptionRouter);
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
