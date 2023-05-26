@@ -1,15 +1,15 @@
 import User from "../models/User"
 import { Request, Response } from "express"
-import { User as UserType, UserMethods } from "../@types/models/userTypes"
+import { User as UserType, UserController } from "../@types/models/userTypes"
 
-class UsersController implements UserMethods {
+class UsersController implements UserController {
     /**
      * @route GET /users/:id
      * @description Show one user
      * @access Public
      */
 
-    async showOne(req: Request, res: Response): Promise<Response> {
+    async getUser(req: Request, res: Response): Promise<Response> {
         const user: UserType | null = await User.findById(req.params.id)
 
         if (!user) {
@@ -25,7 +25,7 @@ class UsersController implements UserMethods {
      * @access Public
      */
 
-    async update(req: Request, res: Response): Promise<Response> {
+    async updateUser(req: Request, res: Response): Promise<Response> {
         const user: UserType | null = await User.findById(req.params.id)
 
         if (!user) {

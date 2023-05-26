@@ -1,12 +1,12 @@
 import { Router } from "express"
-import usersController from "../../controllers/usersController"
+import UsersController from "../../controllers/usersController"
 
 const userRouter: Router = Router()
 
-const { showOne, update } = usersController
+const { getUser, updateUser } = UsersController
 
-userRouter.get("/:id", showOne)
+userRouter.get("/:id", getUser)
 
-userRouter.put("/:id", update)
+userRouter.put("/:id", updateUser)
 
 export default userRouter

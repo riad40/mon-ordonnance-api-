@@ -1,19 +1,19 @@
 import Clinic from "../models/Clinic"
 import { Request, Response } from "express"
-import { Clinic as ClinicType, ClinicMethods as IClinicMethods } from "../@types/models/clinicTypes"
+import { Clinic as ClinicType, ClinicController } from "../@types"
 
-class ClinicMethods implements IClinicMethods {
+class ClinicsController implements ClinicController {
     /**
      * @route GET /users/:id
      * @description Show one user
      * @access Public
      */
 
-    async showOne(req: Request, res: Response): Promise<Response> {
+    async getClinic(req: Request, res: Response): Promise<Response> {
         const user: ClinicType | null = await Clinic.findById(req.params.id)
 
         if (!user) {
-            return res.status(404).json({ message: "User not found" })
+            return res.status(404).json({ message: "Clinic not found" })
         }
 
         return res.status(200).json(user)
@@ -25,11 +25,11 @@ class ClinicMethods implements IClinicMethods {
      * @access Public
      */
 
-    async update(req: Request, res: Response): Promise<Response> {
+    async updateClinic(req: Request, res: Response): Promise<Response> {
         const user: ClinicType | null = await Clinic.findById(req.params.id)
 
         if (!user) {
-            return res.status(404).json({ message: "User not found" })
+            return res.status(404).json({ message: "Clinic not found" })
         }
 
         const updatedUser: ClinicType | null = await Clinic.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -38,4 +38,4 @@ class ClinicMethods implements IClinicMethods {
     }
 }
 
-export default new ClinicMethods()
+export default new ClinicsController()

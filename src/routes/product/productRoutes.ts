@@ -4,16 +4,12 @@ import uploadImage from "../../middlewares/uploadImage"
 
 const productRouter: Router = Router()
 
-const { index, show, store, update, destroy } = ProductsController
+const { getProduct, getProducts, createProduct } = ProductsController
 
-productRouter.get("/", index)
+productRouter.get("/", getProducts)
 
-productRouter.get("/:id", show)
+productRouter.get("/:id", getProduct)
 
-productRouter.post("/", uploadImage.single("avatar"), store)
-
-productRouter.put("/:id", update)
-
-productRouter.delete("/:id", destroy)
+productRouter.post("/", uploadImage.single("avatar"), createProduct)
 
 export default productRouter

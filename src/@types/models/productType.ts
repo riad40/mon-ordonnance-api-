@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { Model } from "mongoose"
 
 /** ======================= Product Type ======================= */
 
@@ -7,16 +8,23 @@ interface Product {
     dci: string
     classTherapeutic: string
     laboratory: string
-    avtar: string
+    avatar: string
+    dosage: {
+        ageGroup: string
+        instructions: string
+    }
 }
 
-// product methods
-interface ProductMethods {
-    index: (req: Request, res: Response) => Promise<Response> // read all
-    show: (req: Request, res: Response) => Promise<Response> // read one
-    store: (req: Request, res: Response) => Promise<Response> // create
-    update: (req: Request, res: Response) => Promise<Response> // update
-    destroy: (req: Request, res: Response) => Promise<Response> // delete
+interface ProductDocument extends Product, Document {}
+
+interface ProductModel extends Model<ProductDocument> {}
+
+/** ======================= Product Controller ======================= */
+
+interface ProductController {
+    createProduct(req: Request, res: Response): Promise<Response>
+    getProduct(req: Request, res: Response): Promise<Response>
+    getProducts(req: Request, res: Response): Promise<Response>
 }
 
-export type { Product, ProductMethods }
+export { Product, ProductDocument, ProductModel, ProductController }

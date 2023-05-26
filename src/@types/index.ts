@@ -1,6 +1,23 @@
-import { User, UserMethods } from "./models/userTypes"
-import { Clinic, ClinicMethods } from "./models/clinicTypes"
-import { Patient, PatientMethods } from "./models/patinetTypes"
-import { Product, ProductMethods } from "./models/productType"
+import { User, UserDocument, UserModel, UserController } from "./models/userTypes"
+import { Clinic, ClinicDocument, ClinicModel, ClinicController } from "./models/clinicTypes"
+import { Patient, PatientDocument, PatientModel, PatientController } from "./models/patinetTypes"
+import { Product, ProductDocument, ProductModel, ProductController } from "./models/productType"
 
-export { User, Clinic, UserMethods, ClinicMethods, Patient, PatientMethods, Product, ProductMethods }
+export {
+    User,
+    UserDocument,
+    UserModel,
+    UserController,
+    Clinic,
+    ClinicDocument,
+    ClinicModel,
+    ClinicController,
+    Patient,
+    PatientDocument,
+    PatientModel,
+    PatientController,
+    Product,
+    ProductDocument,
+    ProductModel,
+    ProductController,
+}

@@ -1,32 +1,22 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-class ProductSchema extends mongoose_1.default.Schema {
+const mongoose_1 = require("mongoose");
+class ProductSchema extends mongoose_1.Schema {
     constructor() {
         super({
-            name: {
-                type: String,
-                required: true,
+            name: { type: String, required: true },
+            dci: { type: String, required: true },
+            classTherapeutic: { type: String, required: true },
+            laboratory: { type: String, required: true },
+            avatar: { type: String },
+            dosage: {
+                ageGroup: { type: String },
+                instructions: { type: String },
             },
-            dci: {
-                type: String,
-                required: true,
-            },
-            classTherapeutic: {
-                type: String,
-                required: true,
-            },
-            laboratory: {
-                type: String,
-                required: true,
-            },
-            avtar: {
-                type: String,
-            },
-        }, { timestamps: true });
+        }, {
+            timestamps: true,
+        });
     }
 }
-exports.default = mongoose_1.default.model("Product", new ProductSchema());
+const Product = (0, mongoose_1.model)("Product", new ProductSchema());
+exports.default = Product;

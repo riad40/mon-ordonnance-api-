@@ -13,17 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Clinic_1 = __importDefault(require("../models/Clinic"));
-class ClinicMethods {
+class ClinicsController {
     /**
      * @route GET /users/:id
      * @description Show one user
      * @access Public
      */
-    showOne(req, res) {
+    getClinic(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield Clinic_1.default.findById(req.params.id);
             if (!user) {
-                return res.status(404).json({ message: "User not found" });
+                return res.status(404).json({ message: "Clinic not found" });
             }
             return res.status(200).json(user);
         });
@@ -33,15 +33,15 @@ class ClinicMethods {
      * @description Update one user
      * @access Public
      */
-    update(req, res) {
+    updateClinic(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield Clinic_1.default.findById(req.params.id);
             if (!user) {
-                return res.status(404).json({ message: "User not found" });
+                return res.status(404).json({ message: "Clinic not found" });
             }
             const updatedUser = yield Clinic_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
             return res.status(200).json(updatedUser);
         });
     }
 }
-exports.default = new ClinicMethods();
+exports.default = new ClinicsController();

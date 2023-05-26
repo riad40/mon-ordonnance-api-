@@ -1,36 +1,20 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-class PatientSchema extends mongoose_1.default.Schema {
+const mongoose_1 = require("mongoose");
+class PatientSchema extends mongoose_1.Schema {
     constructor() {
         super({
-            firstName: {
-                type: String,
-                required: true,
-            },
-            lastName: {
-                type: String,
-                required: true,
-            },
-            cin: {
-                type: String,
-                required: true,
-            },
-            phoneNumber: {
-                type: String,
-                required: true,
-            },
-            dateOfBirth: {
-                type: String,
-                required: true,
-            },
-            avatar: {
-                type: String,
-            },
-        }, { timestamps: true });
+            firstName: { type: String, required: true },
+            lastName: { type: String, required: true },
+            cin: { type: String, required: true },
+            phoneNumber: { type: String, required: true },
+            dateOfBirth: { type: String, required: true },
+            avatar: { type: String },
+            prescriptions: [{ type: mongoose_1.Types.ObjectId, ref: "Prescription" }],
+        }, {
+            timestamps: true,
+        });
     }
 }
-exports.default = mongoose_1.default.model("Patient", new PatientSchema());
+const Patient = (0, mongoose_1.model)("Patient", new PatientSchema());
+exports.default = Patient;

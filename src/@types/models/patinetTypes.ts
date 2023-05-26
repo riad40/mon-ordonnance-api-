@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { ObjectId, Model } from "mongoose"
 
 /** ======================= PATIENT TYPES ======================= */
 
@@ -9,15 +10,19 @@ interface Patient {
     phoneNumber: string
     dateOfBirth: string
     avatar: string
+    prescriptions: ObjectId[]
 }
 
-// patient methods
-interface PatientMethods {
-    index: (req: Request, res: Response) => Promise<Response> // read all
-    show: (req: Request, res: Response) => Promise<Response> // read one
-    store: (req: Request, res: Response) => Promise<Response> // create
-    update: (req: Request, res: Response) => Promise<Response> // update
-    destroy: (req: Request, res: Response) => Promise<Response> // delete
+interface PatientDocument extends Patient, Document {}
+
+interface PatientModel extends Model<PatientDocument> {}
+
+/** ======================= PATIENT CONTROLLER ======================= */
+
+interface PatientController {
+    createPatient(req: Request, res: Response): Promise<Response>
+    getPatient(req: Request, res: Response): Promise<Response>
+    getPatients(req: Request, res: Response): Promise<Response>
 }
 
-export type { Patient, PatientMethods }
+export { Patient, PatientDocument, PatientModel, PatientController }

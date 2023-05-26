@@ -3,10 +3,10 @@ import ClinicsController from "../../controllers/clinicsController"
 
 const clinicRouter: Router = Router()
 
-const { showOne, update } = ClinicsController
+const { getClinic, updateClinic } = ClinicsController
 
-clinicRouter.get("/:id", showOne)
+clinicRouter.get("/:id", getClinic)
 
-clinicRouter.put("/:id", update)
+clinicRouter.put("/:id", updateClinic)
 
 export default clinicRouter

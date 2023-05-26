@@ -4,16 +4,12 @@ import uploadImage from "../../middlewares/uploadImage"
 
 const patientRouter: Router = Router()
 
-const { index, show, store, update, destroy } = PatientsController
+const { createPatient, getPatient, getPatients } = PatientsController
 
-patientRouter.get("/", index)
+patientRouter.get("/", getPatients)
 
-patientRouter.get("/:id", show)
+patientRouter.get("/:id", getPatient)
 
-patientRouter.post("/", uploadImage.single("avatar"), store)
-
-patientRouter.put("/:id", update)
-
-patientRouter.delete("/:id", destroy)
+patientRouter.post("/", uploadImage.single("avatar"), createPatient)
 
 export default patientRouter

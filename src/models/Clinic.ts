@@ -1,39 +1,25 @@
-import mongoose from "mongoose"
-import { Clinic } from "../@types/models/clinicTypes"
+import { model, Schema, Types } from "mongoose"
+import { Clinic, ClinicDocument, ClinicModel } from "../@types"
 
-class ClinicSchema extends mongoose.Schema {
+class ClinicSchema extends Schema<ClinicDocument> {
     constructor() {
-        super({
-            name: {
-                type: String,
-                required: true,
+        super(
+            {
+                name: { type: String, required: true },
+                address: { type: String, required: true },
+                city: { type: String, required: true },
+                phone: { type: String, required: true },
+                email: { type: String, required: true },
+                fax: { type: String, required: true },
+                owner: { type: Types.ObjectId, ref: "User" },
             },
-            address: {
-                type: String,
-                required: true,
+            {
+                timestamps: true,
             },
-            city: {
-                type: String,
-                required: true,
-            },
-            phone: {
-                type: String,
-                required: true,
-            },
-            email: {
-                type: String,
-                required: true,
-            },
-            fax: {
-                type: String,
-                required: true,
-            },
-            owner: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "User",
-            },
-        })
+        )
     }
 }
 
-export default mongoose.model<Clinic>("Clinic", new ClinicSchema())
+const Clinic: ClinicModel = model<ClinicDocument, ClinicModel>("Clinic", new ClinicSchema())
+
+export default Clinic

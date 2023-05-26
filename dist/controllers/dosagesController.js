@@ -12,36 +12,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("../models/User"));
-class UsersController {
+const Dosage_1 = __importDefault(require("../models/Dosage"));
+class DosagesController {
     /**
-     * @route GET /users/:id
-     * @description Show one user
+     * @route GET /api/dosages/:productId
+     * @desc Get dosage by product id
      * @access Public
      */
-    getUser(req, res) {
+    getDosageByProduct(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield User_1.default.findById(req.params.id);
-            if (!user) {
-                return res.status(404).json({ message: "User not found" });
+            try {
+                const { productId } = req.params;
+                const dosage = yield Dosage_1.default.findOne({ product: productId });
+                return res.status(200).json({ dosage });
             }
-            return res.status(200).json(user);
+            catch (error) {
+                return res.status(500).json({ error });
+            }
         });
     }
     /**
-     * @route PUT /users/:id
-     * @description Update one user
+     * @route POST /api/dosages
+     * @desc Create dosage
      * @access Public
      */
-    updateUser(req, res) {
+    createDosage(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield User_1.default.findById(req.params.id);
-            if (!user) {
-                return res.status(404).json({ message: "User not found" });
+            try {
+                const { product, dosageInstruction } = req.body;
+                const dosage = new Dosage_1.default({
+                    product,
+                    dosageInstruction,
+                });
+                yield dosage.save();
+                return res.status(201).json({ dosage });
             }
-            const updatedUser = yield User_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
-            return res.status(200).json(updatedUser);
+            catch (error) {
+                return res.status(500).json({ error });
+            }
         });
     }
 }
-exports.default = new UsersController();
+exports.default = new DosagesController();

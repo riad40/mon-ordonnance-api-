@@ -1,4 +1,4 @@
-import { ObjectId } from "mongoose"
+import { ObjectId, Model } from "mongoose"
 import { Request, Response } from "express"
 
 /** ============================ Clinic Type ============================ */
@@ -12,10 +12,14 @@ interface Clinic {
     owner: ObjectId | string
 }
 
-// clinic methods
-interface ClinicMethods {
-    showOne(req: Request, res: Response): Promise<Response>
-    update(req: Request, res: Response): Promise<Response>
+interface ClinicDocument extends Clinic, Document {}
+
+interface ClinicModel extends Model<ClinicDocument> {}
+
+/** ============================ Clinic Controller ============================ */
+interface ClinicController {
+    getClinic(req: Request, res: Response): Promise<Response>
+    updateClinic(req: Request, res: Response): Promise<Response>
 }
 
-export type { Clinic, ClinicMethods }
+export { Clinic, ClinicDocument, ClinicModel, ClinicController }

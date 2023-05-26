@@ -19,7 +19,7 @@ class PatientsController {
      * @desc    Get all patients
      * @access  Public
      */
-    index(req, res) {
+    getPatients(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const patients = yield Patient_1.default.find();
@@ -35,11 +35,13 @@ class PatientsController {
      * @desc    Get a patient by id
      * @access  Public
      */
-    show(req, res) {
+    getPatient(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             try {
                 const patient = yield Patient_1.default.findById(id);
+                if (!patient)
+                    return res.status(404).json({ message: "Patient not found" });
                 return res.status(200).json(patient);
             }
             catch (error) {
@@ -53,7 +55,7 @@ class PatientsController {
      * @access  Public
      * @body    { firstName, lastName, cin, phoneNumber, dateOfBirth }
      */
-    store(req, res) {
+    createPatient(req, res) {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const { firstName, lastName, cin, phoneNumber, dateOfBirth } = req.body;
@@ -70,57 +72,6 @@ class PatientsController {
                 return res.status(201).json({
                     message: "Patient created successfully",
                     patient,
-                });
-            }
-            catch (error) {
-                return res.status(500).json(error);
-            }
-        });
-    }
-    /**
-     * @route   PUT /api/patients/:id
-     * @desc    Update a patient
-     * @access  Public
-     * @body    { firstName, lastName, cin, phoneNumber, dateOfBirth }
-     */
-    update(req, res) {
-        var _a;
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const avatar = req.file && `/images/${(_a = req.file) === null || _a === void 0 ? void 0 : _a.filename}`;
-            try {
-                const patient = yield Patient_1.default.findById(id);
-                if (!patient) {
-                    return res.status(404).json({ message: "Patient not found" });
-                }
-                const updatedPatient = yield Patient_1.default.findByIdAndUpdate(id, Object.assign(Object.assign({}, req.body), { avatar: avatar || patient.avatar }), { new: true });
-                return res.status(200).json({
-                    message: "Patient updated successfully",
-                    patient: updatedPatient,
-                });
-            }
-            catch (error) {
-                return res.status(500).json(error);
-            }
-        });
-    }
-    /**
-     * @route   DELETE /api/patients/:id
-     * @desc    Delete a patient
-     * @access  Public
-     */
-    destroy(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            try {
-                const patient = yield Patient_1.default.findById(id);
-                if (!patient) {
-                    return res.status(404).json({ message: "Patient not found" });
-                }
-                const deletedPatient = yield Patient_1.default.findByIdAndDelete(id);
-                return res.status(200).json({
-                    message: "Patient deleted successfully",
-                    patient: deletedPatient,
                 });
             }
             catch (error) {
