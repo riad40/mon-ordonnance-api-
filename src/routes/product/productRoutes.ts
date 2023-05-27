@@ -4,9 +4,11 @@ import uploadImage from "../../middlewares/uploadImage"
 
 const productRouter: Router = Router()
 
-const { getProduct, getProducts, createProduct } = ProductsController
+const { getProduct, getProducts, createProduct, getProductsCount } = ProductsController
 
 productRouter.get("/", getProducts)
+
+productRouter.get("/count", getProductsCount)
 
 productRouter.get("/:id", getProduct)
 

@@ -69,5 +69,61 @@ class PrescriptionsController {
             }
         });
     }
+    /**
+     * @route   GET /api/prescriptions/count
+     * @desc    Get the number of prescriptions
+     * @access  Public
+     */
+    getPrescriptionsCount(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const count = yield Prescription_1.default.countDocuments();
+                return res.status(200).json(count);
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
+    /**
+     * @route   GET /api/prescriptions/count/week
+     * @desc    Get the number of prescriptions of the current week
+     * @access  Public
+     */
+    getPrescriptionsCountCurrentWeek(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const count = yield Prescription_1.default.countDocuments({
+                    createdAt: {
+                        $gte: new Date(new Date().setDate(new Date().getDate() - 7)),
+                    },
+                });
+                return res.status(200).json(count);
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
+    /**
+     * @route   GET /api/prescriptions/count/month
+     * @desc    Get the number of prescriptions of the current month
+     * @access  Public
+     */
+    getPrescriptionsCountCurrentMonth(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const count = yield Prescription_1.default.countDocuments({
+                    createdAt: {
+                        $gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+                    },
+                });
+                return res.status(200).json(count);
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
 }
 exports.default = new PrescriptionsController();

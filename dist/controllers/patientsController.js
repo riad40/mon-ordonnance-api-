@@ -79,5 +79,59 @@ class PatientsController {
             }
         });
     }
+    /**
+     * @route   GET /api/patients/count
+     * @desc    Get patients count
+     * @access  Public
+     */
+    getPatientsCount(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const patientsCount = yield Patient_1.default.countDocuments();
+                return res.status(200).json(patientsCount);
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
+    /**
+     * @route   GET /api/patients/count/week
+     * @desc    Get patients count current week
+     * @access  Public
+     */
+    getPatientsCountCurrentWeek(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const patientsCount = yield Patient_1.default.countDocuments({
+                    createdAt: { $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000) },
+                });
+                return res.status(200).json(patientsCount);
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
+    /**
+     * @route   GET /api/patients/count/month
+     * @desc    Get patients count current month
+     * @access  Public
+     */
+    getPatientsCountCurrentMonth(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const patientsCount = yield Patient_1.default.countDocuments({
+                    createdAt: {
+                        $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+                    },
+                });
+                return res.status(200).json(patientsCount);
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
 }
 exports.default = new PatientsController();

@@ -67,6 +67,57 @@ class PatientsController implements PatientController {
             return res.status(500).json(error)
         }
     }
+
+    /**
+     * @route   GET /api/patients/count
+     * @desc    Get patients count
+     * @access  Public
+     */
+
+    public async getPatientsCount(req: Request, res: Response): Promise<Response> {
+        try {
+            const patientsCount = await Patient.countDocuments()
+            return res.status(200).json(patientsCount)
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
+
+    /**
+     * @route   GET /api/patients/count/week
+     * @desc    Get patients count current week
+     * @access  Public
+     */
+
+    public async getPatientsCountCurrentWeek(req: Request, res: Response): Promise<Response> {
+        try {
+            const patientsCount = await Patient.countDocuments({
+                createdAt: { $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000) },
+            })
+            return res.status(200).json(patientsCount)
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
+
+    /**
+     * @route   GET /api/patients/count/month
+     * @desc    Get patients count current month
+     * @access  Public
+     */
+
+    public async getPatientsCountCurrentMonth(req: Request, res: Response): Promise<Response> {
+        try {
+            const patientsCount = await Patient.countDocuments({
+                createdAt: {
+                    $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+                },
+            })
+            return res.status(200).json(patientsCount)
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
 }
 
 export default new PatientsController()

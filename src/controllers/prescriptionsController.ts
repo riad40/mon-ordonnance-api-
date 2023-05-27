@@ -58,6 +58,59 @@ class PrescriptionsController implements PrescriptionController {
             return res.status(500).json(error)
         }
     }
+
+    /**
+     * @route   GET /api/prescriptions/count
+     * @desc    Get the number of prescriptions
+     * @access  Public
+     */
+
+    public async getPrescriptionsCount(req: Request, res: Response): Promise<Response> {
+        try {
+            const count = await Prescription.countDocuments()
+            return res.status(200).json(count)
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
+
+    /**
+     * @route   GET /api/prescriptions/count/week
+     * @desc    Get the number of prescriptions of the current week
+     * @access  Public
+     */
+
+    public async getPrescriptionsCountCurrentWeek(req: Request, res: Response): Promise<Response> {
+        try {
+            const count = await Prescription.countDocuments({
+                createdAt: {
+                    $gte: new Date(new Date().setDate(new Date().getDate() - 7)),
+                },
+            })
+            return res.status(200).json(count)
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
+
+    /**
+     * @route   GET /api/prescriptions/count/month
+     * @desc    Get the number of prescriptions of the current month
+     * @access  Public
+     */
+
+    public async getPrescriptionsCountCurrentMonth(req: Request, res: Response): Promise<Response> {
+        try {
+            const count = await Prescription.countDocuments({
+                createdAt: {
+                    $gte: new Date(new Date().setDate(new Date().getDate() - 30)),
+                },
+            })
+            return res.status(200).json(count)
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
 }
 
 export default new PrescriptionsController()

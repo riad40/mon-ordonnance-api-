@@ -77,5 +77,21 @@ class ProductsController {
             }
         });
     }
+    /**
+     * @route   GET api/products/count
+     * @desc    Get products count
+     * @access  Public
+     */
+    getProductsCount(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const productsCount = yield Product_1.default.countDocuments();
+                return res.status(200).json({ count: productsCount });
+            }
+            catch (error) {
+                return res.status(500).json(error);
+            }
+        });
+    }
 }
 exports.default = new ProductsController();

@@ -23,6 +23,9 @@ interface PatientController {
     createPatient(req: Request, res: Response): Promise<Response>
     getPatient(req: Request, res: Response): Promise<Response>
     getPatients(req: Request, res: Response): Promise<Response>
+    getPatientsCount(req: Request, res: Response): Promise<Response>
+    getPatientsCountCurrentWeek(req: Request, res: Response): Promise<Response>
+    getPatientsCountCurrentMonth(req: Request, res: Response): Promise<Response>
 }
 
 export { Patient, PatientDocument, PatientModel, PatientController }

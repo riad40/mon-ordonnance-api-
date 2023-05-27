@@ -23,6 +23,9 @@ interface PrescriptionController {
     createPrescription(req: Request, res: Response): Promise<Response>
     getPrescription(req: Request, res: Response): Promise<Response>
     getPrescriptions(req: Request, res: Response): Promise<Response>
+    getPrescriptionsCount(req: Request, res: Response): Promise<Response>
+    getPrescriptionsCountCurrentWeek(req: Request, res: Response): Promise<Response>
+    getPrescriptionsCountCurrentMonth(req: Request, res: Response): Promise<Response>
 }
 
 export { Prescription, PrescriptionDocument, PrescriptionModel, PrescriptionController }

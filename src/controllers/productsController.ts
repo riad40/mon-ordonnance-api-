@@ -64,6 +64,21 @@ class ProductsController implements ProductController {
             return res.status(500).json(error)
         }
     }
+
+    /**
+     * @route   GET api/products/count
+     * @desc    Get products count
+     * @access  Public
+     */
+
+    public async getProductsCount(req: Request, res: Response): Promise<Response> {
+        try {
+            const productsCount: number = await Product.countDocuments()
+            return res.status(200).json({ count: productsCount })
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    }
 }
 
 export default new ProductsController()

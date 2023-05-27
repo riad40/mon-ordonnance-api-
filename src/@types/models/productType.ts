@@ -25,6 +25,7 @@ interface ProductController {
     createProduct(req: Request, res: Response): Promise<Response>
     getProduct(req: Request, res: Response): Promise<Response>
     getProducts(req: Request, res: Response): Promise<Response>
+    getProductsCount(req: Request, res: Response): Promise<Response>
 }
 
 export { Product, ProductDocument, ProductModel, ProductController }
