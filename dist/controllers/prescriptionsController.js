@@ -56,11 +56,13 @@ class PrescriptionsController {
      */
     createPrescription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { patient, products } = req.body;
+            const { patient, products, status } = req.body;
+            const avatar = req.file && `/images/${req.file.filename}`;
             try {
                 const prescription = yield Prescription_1.default.create({
                     patient,
                     products,
+                    status,
                 });
                 return res.status(201).json(prescription);
             }

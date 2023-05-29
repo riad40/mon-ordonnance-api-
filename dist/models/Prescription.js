@@ -8,6 +8,20 @@ class PrescriptionSchema extends mongoose_1.Schema {
                 type: String,
                 required: true,
             },
+            id: {
+                type: Number,
+                default: 1,
+                increment: true,
+            },
+            avatar: {
+                type: String,
+                required: true,
+            },
+            status: {
+                type: String,
+                enum: ["Brouillon", "Enregistrée"],
+                default: "Brouillon",
+            },
             products: [
                 {
                     name: {

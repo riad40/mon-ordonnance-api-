@@ -45,12 +45,15 @@ class PrescriptionsController implements PrescriptionController {
      */
 
     public async createPrescription(req: Request, res: Response): Promise<Response> {
-        const { patient, products } = req.body
+        const { patient, products, status } = req.body
+
+        const avatar = req.file && `/images/${req.file.filename}`
 
         try {
             const prescription: PrescriptionType = await Prescription.create({
                 patient,
                 products,
+                status,
             })
 
             return res.status(201).json(prescription)

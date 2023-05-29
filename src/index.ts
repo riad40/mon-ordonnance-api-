@@ -1,5 +1,6 @@
 import express, { Express } from "express"
 import dotenv from "dotenv"
+import cors from "cors"
 // configs
 import connectDB from "./configs/db"
 import initDb from "./configs/initDb"
@@ -19,6 +20,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, "public")))
+
+app.use(cors({ origin: true, credentials: true }))
 
 // routes
 app.use("/api/users", userRouter)

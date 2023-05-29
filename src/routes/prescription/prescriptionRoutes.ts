@@ -1,5 +1,6 @@
 import { Router } from "express"
 import PrescriptionsController from "../../controllers/prescriptionsController"
+import uploadImage from "../../middlewares/uploadImage"
 
 const prescriptionRouter: Router = Router()
 
@@ -22,6 +23,6 @@ prescriptionRouter.get("/count/month", getPrescriptionsCountCurrentMonth)
 
 prescriptionRouter.get("/:id", getPrescription)
 
-prescriptionRouter.post("/", createPrescription)
+prescriptionRouter.post("/", uploadImage.single("avatar"), createPrescription)
 
 export default prescriptionRouter
