@@ -1,2 +1,6 @@
-.env
 node_modules
+src/
+.dockerignore
+Dockerfile
+docker-compose.yml
+tsconfig.json
