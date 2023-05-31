@@ -52,7 +52,8 @@ const bodyValidator = (resource) => {
             return next();
         }
         return res.status(422).json({
-            errors: "Invalid inputs passed, please check your data.",
+            errors: errors.array(),
+            message: "Invalid body data",
         });
     };
     return [validationRules(), validate];

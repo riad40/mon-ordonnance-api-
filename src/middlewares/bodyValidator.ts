@@ -58,7 +58,8 @@ const bodyValidator = (resource: string): RequestHandler[] | any => {
             return next()
         }
         return res.status(422).json({
-            errors: "Invalid inputs passed, please check your data.",
+            errors: errors.array(),
+            message: "Invalid body data",
         })
     }
 
