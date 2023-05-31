@@ -8,7 +8,7 @@ const bodyValidator = (resource) => {
                 return [
                     (0, express_validator_1.body)("fullName").isString().isLength({ min: 3 }),
                     (0, express_validator_1.body)("email").isEmail(),
-                    (0, express_validator_1.body)("phone").isString().isLength({ min: 10, max: 11 }),
+                    (0, express_validator_1.body)("phone").isString().isLength({ min: 10 }),
                     (0, express_validator_1.body)("dateOfBirth").isString().isLength({ min: 10 }),
                     (0, express_validator_1.body)("speciality").isString().isLength({ min: 3 }),
                     (0, express_validator_1.body)("inpe").isString().isLength({ min: 3 }),
