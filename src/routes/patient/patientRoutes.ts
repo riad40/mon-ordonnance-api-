@@ -24,6 +24,6 @@ patientRouter.get("/count/month", getPatientsCountCurrentMonth)
 
 patientRouter.get("/:id", getPatient)
 
-patientRouter.post("/", uploadImage.single("avatar"), bodyValidator("createPatient"), createPatient)
+patientRouter.post("/", uploadImage.single("avatar"), createPatient)
 
 export default patientRouter

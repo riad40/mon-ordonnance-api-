@@ -13,6 +13,6 @@ productRouter.get("/count", getProductsCount)
 
 productRouter.get("/:id", getProduct)
 
-productRouter.post("/", uploadImage.single("avatar"), bodyValidator("createProduct"), createProduct)
+productRouter.post("/", uploadImage.single("avatar"), createProduct)
 
 export default productRouter
