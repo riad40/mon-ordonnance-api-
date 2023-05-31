@@ -1,6 +1,7 @@
 import { Router } from "express"
 import PatientsController from "../../controllers/patientsController"
 import uploadImage from "../../middlewares/uploadImage"
+import bodyValidator from "../../middlewares/bodyValidator"
 
 const patientRouter: Router = Router()
 
@@ -23,6 +24,6 @@ patientRouter.get("/count/month", getPatientsCountCurrentMonth)
 
 patientRouter.get("/:id", getPatient)
 
-patientRouter.post("/", uploadImage.single("avatar"), createPatient)
+patientRouter.post("/", uploadImage.single("avatar"), bodyValidator("createPatient"), createPatient)
 
 export default patientRouter

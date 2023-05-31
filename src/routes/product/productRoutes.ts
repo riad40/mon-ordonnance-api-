@@ -1,6 +1,7 @@
 import { Router } from "express"
 import ProductsController from "../../controllers/productsController"
 import uploadImage from "../../middlewares/uploadImage"
+import bodyValidator from "../../middlewares/bodyValidator"
 
 const productRouter: Router = Router()
 
@@ -12,6 +13,6 @@ productRouter.get("/count", getProductsCount)
 
 productRouter.get("/:id", getProduct)
 
-productRouter.post("/", uploadImage.single("avatar"), createProduct)
+productRouter.post("/", uploadImage.single("avatar"), bodyValidator("createProduct"), createProduct)
 
 export default productRouter
