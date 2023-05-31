@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Clinic_1 = __importDefault(require("../models/Clinic"));
 class ClinicsController {
     /**
-     * @route GET /users/:id
+     * @route GET /clinics/:id
      * @description Show one user
      * @access Public
      */
@@ -29,7 +29,7 @@ class ClinicsController {
         });
     }
     /**
-     * @route PUT /users/:id
+     * @route PUT /clinics/:id
      * @description Update one user
      * @access Public
      */

@@ -8,6 +8,6 @@ const clinicsController_1 = __importDefault(require("../../controllers/clinicsCo
 const bodyValidator_1 = __importDefault(require("../../middlewares/bodyValidator"));
 const clinicRouter = (0, express_1.Router)();
 const { getClinic, updateClinic } = clinicsController_1.default;
-clinicRouter.get("/:id", (0, bodyValidator_1.default)("updateClinic"), getClinic);
-clinicRouter.put("/:id", updateClinic);
+clinicRouter.get("/:id", getClinic);
+clinicRouter.put("/:id", (0, bodyValidator_1.default)("updateClinic"), updateClinic);
 exports.default = clinicRouter;

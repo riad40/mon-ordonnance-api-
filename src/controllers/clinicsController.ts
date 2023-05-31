@@ -4,7 +4,7 @@ import { Clinic as ClinicType, ClinicController } from "../@types"
 
 class ClinicsController implements ClinicController {
     /**
-     * @route GET /users/:id
+     * @route GET /clinics/:id
      * @description Show one user
      * @access Public
      */
@@ -20,7 +20,7 @@ class ClinicsController implements ClinicController {
     }
 
     /**
-     * @route PUT /users/:id
+     * @route PUT /clinics/:id
      * @description Update one user
      * @access Public
      */
