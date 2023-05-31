@@ -43,5 +43,21 @@ class UsersController {
             return res.status(200).json(updatedUser);
         });
     }
+    /**
+     * @route PATCH /users/:id/avatar
+     * @description Update user avatar
+     * @access Public
+     */
+    updateAvatar(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user = yield User_1.default.findById(req.params.id);
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+            const avatar = req.file && `/images/${req.file.filename}`;
+            const updateAvatar = yield User_1.default.findByIdAndUpdate(req.params.id, { avatar }, { new: true });
+            return res.status(200).json(updateAvatar);
+        });
+    }
 }
 exports.default = new UsersController();

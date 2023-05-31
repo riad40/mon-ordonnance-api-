@@ -22,6 +22,7 @@ interface UserModel extends Model<UserDocument> {}
 interface UserController {
     getUser(req: Request, res: Response): Promise<Response>
     updateUser(req: Request, res: Response): Promise<Response>
+    updateAvatar(req: Request, res: Response): Promise<Response>
 }
 
 export { User, UserDocument, UserModel, UserController }

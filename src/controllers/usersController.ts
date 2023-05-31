@@ -36,6 +36,26 @@ class UsersController implements UserController {
 
         return res.status(200).json(updatedUser)
     }
+
+    /**
+     * @route PATCH /users/:id/avatar
+     * @description Update user avatar
+     * @access Public
+     */
+
+    async updateAvatar(req: Request, res: Response): Promise<Response> {
+        const user: UserType | null = await User.findById(req.params.id)
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" })
+        }
+
+        const avatar = req.file && `/images/${req.file.filename}`
+
+        const updateAvatar: UserType | null = await User.findByIdAndUpdate(req.params.id, { avatar }, { new: true })
+
+        return res.status(200).json(updateAvatar)
+    }
 }
 
 export default new UsersController()
