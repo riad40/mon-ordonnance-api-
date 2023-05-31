@@ -57,7 +57,9 @@ class UsersController {
             }
             const extname = req.file && req.file.mimetype.split("/")[1];
             // check if the filename has no extension and add one
-            const avatar = req.file && req.file.filename.split(".")[1] ? req.file.filename : `${(_a = req.file) === null || _a === void 0 ? void 0 : _a.filename}.${extname}`;
+            const avatar = req.file && req.file.filename.split(".")[1]
+                ? `/images/${req.file.filename}`
+                : `/images/${(_a = req.file) === null || _a === void 0 ? void 0 : _a.filename}.${extname}`;
             console.log(avatar);
             const updateAvatar = yield User_1.default.findByIdAndUpdate(req.params.id, { avatar }, { new: true });
             return res.status(200).json(updateAvatar);

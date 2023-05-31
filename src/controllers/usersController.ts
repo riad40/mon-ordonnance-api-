@@ -54,7 +54,9 @@ class UsersController implements UserController {
 
         // check if the filename has no extension and add one
         const avatar =
-            req.file && req.file.filename.split(".")[1] ? req.file.filename : `${req.file?.filename}.${extname}`
+            req.file && req.file.filename.split(".")[1]
+                ? `/images/${req.file.filename}`
+                : `/images/${req.file?.filename}.${extname}`
 
         console.log(avatar)
 
