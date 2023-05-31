@@ -56,15 +56,16 @@ class PrescriptionsController {
      */
     createPrescription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { patient, products, status } = req.body;
-            const avatar = req.file && `/images/${req.file.filename}`;
+            const { patient, products } = req.body;
             try {
                 const prescription = yield Prescription_1.default.create({
                     patient,
                     products,
-                    status,
                 });
-                return res.status(201).json(prescription);
+                return res.status(201).json({
+                    message: "Prescription created successfully",
+                    prescription,
+                });
             }
             catch (error) {
                 return res.status(500).json(error);

@@ -6,16 +6,12 @@ import { Request, Response } from "express"
 interface Prescription {
     id: number
     patient: string
-    avatar: string
-    status: PrescriptionStatus
     products: {
         name: string
         dosage: string
         duration: string
     }[]
 }
-
-type PrescriptionStatus = "Brouillon" | "Enregistrée"
 
 interface PrescriptionDocument extends Prescription, Document {}
 
