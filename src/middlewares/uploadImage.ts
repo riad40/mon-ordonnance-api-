@@ -13,15 +13,6 @@ const storeImage = multer.diskStorage({
 
 const uploadImage = multer({
     storage: storeImage,
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png/
-        const extName = fileTypes.test(path.extname(file.originalname).toLowerCase())
-        const mimeType = fileTypes.test(file.mimetype)
-
-        if (extName && mimeType) return cb(null, true)
-
-        cb(new Error(JSON.stringify("file uploded is invalid")))
-    },
 })
 
 export default uploadImage

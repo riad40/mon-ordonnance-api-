@@ -16,13 +16,5 @@ const storeImage = multer_1.default.diskStorage({
 });
 const uploadImage = (0, multer_1.default)({
     storage: storeImage,
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png/;
-        const extName = fileTypes.test(path_1.default.extname(file.originalname).toLowerCase());
-        const mimeType = fileTypes.test(file.mimetype);
-        if (extName && mimeType)
-            return cb(null, true);
-        cb(new Error(JSON.stringify("file uploded is invalid")));
-    },
 });
 exports.default = uploadImage;
