@@ -6,7 +6,7 @@ const bodyValidator = (resource) => {
         switch (resource) {
             case "updateUser":
                 return [
-                    (0, express_validator_1.body)("name").isString().isLength({ min: 3 }),
+                    (0, express_validator_1.body)("fullNname").isString().isLength({ min: 3 }),
                     (0, express_validator_1.body)("email").isEmail(),
                     (0, express_validator_1.body)("phone").isString().isLength({ min: 10, max: 11 }),
                     (0, express_validator_1.body)("dateOfBirth").isString().isLength({ min: 10, max: 10 }),

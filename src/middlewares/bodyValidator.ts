@@ -6,7 +6,7 @@ const bodyValidator = (resource: string): RequestHandler[] | any => {
         switch (resource) {
             case "updateUser":
                 return [
-                    body("name").isString().isLength({ min: 3 }),
+                    body("fullNname").isString().isLength({ min: 3 }),
                     body("email").isEmail(),
                     body("phone").isString().isLength({ min: 10, max: 11 }),
                     body("dateOfBirth").isString().isLength({ min: 10, max: 10 }),
