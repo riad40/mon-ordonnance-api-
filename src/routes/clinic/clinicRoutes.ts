@@ -6,8 +6,8 @@ const clinicRouter: Router = Router()
 
 const { getClinic, updateClinic } = ClinicsController
 
-clinicRouter.get("/:id", bodyValidator("updateClinic"), getClinic)
+clinicRouter.get("/:id", getClinic)
 
-clinicRouter.put("/:id", updateClinic)
+clinicRouter.put("/:id", bodyValidator("updateClinic"), updateClinic)
 
 export default clinicRouter
