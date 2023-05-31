@@ -47,7 +47,9 @@ class ProductsController implements ProductController {
 
         const avatar = req.file && `/images/${req.file.filename}`
 
-        const dosageFormatted = JSON.parse(dosage)
+        console.log(dosage)
+
+        const dosageFormatted = dosage && JSON.parse(dosage)
 
         try {
             const newProduct: ProductType = await Product.create({

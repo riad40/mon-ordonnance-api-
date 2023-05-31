@@ -58,7 +58,8 @@ class ProductsController {
         return __awaiter(this, void 0, void 0, function* () {
             const { name, dci, classTherapeutic, laboratory, dosage } = req.body;
             const avatar = req.file && `/images/${req.file.filename}`;
-            const dosageFormatted = JSON.parse(dosage);
+            console.log(dosage);
+            const dosageFormatted = dosage && JSON.parse(dosage);
             try {
                 const newProduct = yield Product_1.default.create({
                     name,
