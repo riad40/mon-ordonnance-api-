@@ -47,6 +47,8 @@ class ProductsController implements ProductController {
 
         const avatar = req.file && `/images/${req.file.filename}`
 
+        const dosageFormatted = JSON.parse(dosage)
+
         try {
             const newProduct: ProductType = await Product.create({
                 name,
@@ -54,7 +56,7 @@ class ProductsController implements ProductController {
                 classTherapeutic,
                 laboratory,
                 avatar,
-                dosage,
+                dosage: dosageFormatted,
             })
             return res.status(201).json({
                 message: "Product created successfully",
