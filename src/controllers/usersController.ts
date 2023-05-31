@@ -50,15 +50,7 @@ class UsersController implements UserController {
             return res.status(404).json({ message: "User not found" })
         }
 
-        const extname = req.file && req.file.mimetype.split("/")[1]
-
-        // check if the filename has no extension and add one
-        const avatar =
-            req.file && req.file.filename.split(".")[1]
-                ? `/images/${req.file.filename}`
-                : `/images/${req.file?.filename}.${extname}`
-
-        console.log(avatar)
+        const avatar = req.file && `/images/${req.file.filename}`
 
         const updateAvatar: UserType | null = await User.findByIdAndUpdate(req.params.id, { avatar }, { new: true })
 

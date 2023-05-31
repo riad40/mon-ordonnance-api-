@@ -49,18 +49,12 @@ class UsersController {
      * @access Public
      */
     updateAvatar(req, res) {
-        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield User_1.default.findById(req.params.id);
             if (!user) {
                 return res.status(404).json({ message: "User not found" });
             }
-            const extname = req.file && req.file.mimetype.split("/")[1];
-            // check if the filename has no extension and add one
-            const avatar = req.file && req.file.filename.split(".")[1]
-                ? `/images/${req.file.filename}`
-                : `/images/${(_a = req.file) === null || _a === void 0 ? void 0 : _a.filename}.${extname}`;
-            console.log(avatar);
+            const avatar = req.file && `/images/${req.file.filename}`;
             const updateAvatar = yield User_1.default.findByIdAndUpdate(req.params.id, { avatar }, { new: true });
             return res.status(200).json(updateAvatar);
         });
