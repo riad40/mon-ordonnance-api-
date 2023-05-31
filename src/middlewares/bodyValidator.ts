@@ -9,7 +9,7 @@ const bodyValidator = (resource: string): RequestHandler[] | any => {
                     body("fullName").isString().isLength({ min: 3 }),
                     body("email").isEmail(),
                     body("phone").isString().isLength({ min: 10, max: 11 }),
-                    body("dateOfBirth").isString().isLength({ min: 10, max: 10 }),
+                    body("dateOfBirth").isString().isLength({ min: 10 }),
                     body("speciality").isString().isLength({ min: 3 }),
                     body("inpe").isString().isLength({ min: 3 }),
                 ]
