@@ -52,6 +52,8 @@ class UsersController implements UserController {
 
         const avatar = req.file && `/images/${req.file.filename}`
 
+        console.log(req.file)
+
         const updateAvatar: UserType | null = await User.findByIdAndUpdate(req.params.id, { avatar }, { new: true })
 
         return res.status(200).json(updateAvatar)

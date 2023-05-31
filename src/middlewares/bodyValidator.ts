@@ -28,8 +28,7 @@ const bodyValidator = (resource: string): RequestHandler[] | any => {
                 return [
                     body("firstName").isString().isLength({ min: 3 }),
                     body("lastName").isString().isLength({ min: 3 }),
-                    body("email").isEmail(),
-                    body("phone").isString().isLength({ min: 10, max: 11 }),
+                    body("phoneNumber").isString().isLength({ min: 10 }),
                     body("dateOfBirth").isString().isLength({ min: 10, max: 10 }),
                     body("cin").isString().isLength({ min: 3 }),
                 ]

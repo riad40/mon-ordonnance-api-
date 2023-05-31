@@ -55,6 +55,7 @@ class UsersController {
                 return res.status(404).json({ message: "User not found" });
             }
             const avatar = req.file && `/images/${req.file.filename}`;
+            console.log(req.file);
             const updateAvatar = yield User_1.default.findByIdAndUpdate(req.params.id, { avatar }, { new: true });
             return res.status(200).json(updateAvatar);
         });
