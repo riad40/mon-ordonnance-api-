@@ -50,9 +50,9 @@ class UsersController implements UserController {
             return res.status(404).json({ message: "User not found" })
         }
 
-        const avatarExt = req.file && req.file.mimetype.split("/")[1]
+        const avatar = req.file && `/images/${req.file.filename}`
 
-        const avatar = req.file && req.file.filename.split(" ")[0] + "." + avatarExt
+        console.log(avatar)
 
         const updateAvatar: UserType | null = await User.findByIdAndUpdate(req.params.id, { avatar }, { new: true })
 
